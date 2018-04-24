@@ -1,3 +1,19 @@
 http://www.jb51.net/article/94702.htm
 
 insert into test values(1,2,3,4),(1,2,3,4);
+
+
+
+promise 
+
+var get_data = new Promise(function(resolve, reject){
+                        $.get("/static/json/number.json",function(data,status){
+                                resolve(JSON.stringify(data))
+                        });
+   });
+
+get_data.then(function(res){
+        //alert(res)
+    //document.write("Yay! " + res);
+        $("h1").text(res)
+});
