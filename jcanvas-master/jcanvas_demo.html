@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<canvas id="mycanvas" width="9600" height="6000"></canvas>
+<script src='jquery-1.11.1.min.js'></script>
+<script src='dist/jcanvas.js'></script>
+<script>
+	
+	//------------------------------标准属性---------------
+	//layer: true,  图层
+	//name:'box1',
+	//groups: ['myBoxes'],	
+	//rotate: 30     设置字体倾斜度
+	//fillStyle       填充颜色
+	//strokeStyle		边框颜色
+	//fontSize			字体大小
+	//fontFamily			字体类型: 'Trebuchet MS, sans-serif'
+	
+	
+	//.drawLayers()			操作问图层  需重绘
+	
+	
+/*				绘制圆形和阴影
+	.drawArc({
+  fillStyle: '#58d',
+  shadowColor: '#000',			//阴影颜色
+  shadowBlur: 10,			//阴影范围
+  x: 50, y: 50,
+  radius: 30
+});
+	
+*/
+	
+$('canvas').drawArc({
+  layer: true,
+  name:'box1',
+  strokeStyle: '#000',
+  strokeWidth: 5,
+  x: 100, y: 100,
+  radius: 50,
+  // start and end angles in degrees
+  start: 0, end: 90
+});
+
+
+$('canvas').drawArc({
+  layer: true,
+  strokeStyle: '#000',
+  strokeWidth: 5,
+  x: 200, y: 100,
+  radius: 50
+});
+
+
+$('canvas').drawArc({
+  layer: true,
+  fillStyle: 'black',
+  x: 300, y: 100,
+  radius: 50,
+  start: 0, end: Math.PI,
+  ccw: true,
+  inDegrees: false
+});
+
+
+$('canvas').drawArc({
+  layer: true,
+  strokeStyle: '#c33',
+  strokeWidth: 5,
+  x: 400, y: 100,
+  radius: 50,
+  start: 45, end: 225,
+  closed: true
+});
+
+
+//-------事件属性
+
+$('canvas').drawRect({
+  layer: true,
+  name:'name1',
+  fillStyle: '#6c0',
+  x: 100, y: 300,
+  width: 100, height: 80,
+  click: function(layer) {
+    // code to run when square is clicked
+    alert('11111')
+  }
+});
+
+//触发点击事件
+//$('canvas').triggerLayerEvent('name1', 'click');
+
+//
+//for (var i=0; i<5; i+=1) {
+//
+//$('canvas').drawPolygon({
+//  layer: true,
+//  fillStyle: '#c33',
+//  x: 50+(i*60), y: 350,
+//  radius: 30,
+//  sides: 5,
+//  concavity: 0.5,
+//  click: function(layer) {
+//    // Click a star to spin it
+//    $(this).animateLayer(layer, {
+//      rotate: '+=144'
+//    });
+//  }
+//});
+//
+//}
+
+//三角形
+$('canvas').drawPolygon({		//三角形
+  layer: true,
+  fillStyle: '#fff',
+  strokeStyle: '#333',
+  strokeWidth: 2,
+  x: 260, y: 350,
+  radius: 100,
+  sides: 3,
+  mouseover: function(layer) {
+    $(this).animateLayer(layer, {
+      fillStyle: '#c33'
+    }, 500);
+  },
+  mouseout: function(layer) {
+    $(this).animateLayer(layer, {
+      fillStyle: '#fff'
+    }, 500);
+  },
+});
+
+
+// 图层组
+$('canvas').drawRect({
+  layer: true,
+  groups: ['myBoxes'],
+  name: 'box',
+  fillStyle: '#585',
+  x: 500, y: 350,
+  width: 100, height: 50
+});
+
+
+
+$('canvas').drawRect({
+  layer: true,
+  name: 'box',
+  fillStyle: '#585',
+  x: 500, y: 350,
+  width: 100, height: 50
+});
+$('canvas').addLayerToGroup('box', 'myBoxes');			//图层box添加到组中
+$('canvas').removeLayerFromGroup('box', 'myBoxes');		//图层组删除图层
+
+
+$('canvas').drawRect({
+  layer: true,
+  visible: false,									//隐藏图层
+  fillStyle: '#585',
+  x: 600, y: 350,
+  width: 100, height: 50
+});
+
+
+$('canvas').addLayer({
+  ayer: true,
+  type: 'function',
+  name: 'myBox',
+	fn: function(ctx) {					           //addLayer fn 方法执行外部函数
+	    ctx.fillStyle = '#36c';
+	    ctx.fillRect(600, 350, 100, 50);
+	}
+})
+
+$('canvas').draw({									//draw 画方法
+layer: true,
+name: 'myBox',
+fn: function(ctx) {
+    ctx.fillStyle = '#36c';
+    ctx.fillRect(600, 4000, 100, 50);
+   }
+})
+
+
+														//三个长方形堆叠
+
+														//设置图层索引
+$('canvas').addLayer({
+type: 'rectangle',
+groups: ['myBoxes'],
+name: 'redBox',
+fillStyle: '#c33',
+x: 180, y: 150,
+width: 100, height: 100
+})
+.addLayer({
+type: 'rectangle',
+name: 'greenBox',
+groups: ['myBoxes'],
+fillStyle: '#585',
+x: 150, y: 200,
+width: 100, height: 100
+})
+// Normally on top, but moved to the bottom
+.addLayer({
+type: 'rectangle',
+name: 'blueBox',
+groups: ['myBoxes'],
+index: 0,											//index 属性，0 表示最下层   后绘制 在图层底部 绘制
+fillStyle: '#36b',
+x: 230, y: 180,
+width: 100, height: 100
+})
+.drawLayers();						//？？？？？
+
+
+
+												//长方形  存储数据
+$('canvas').drawRect({
+  layer: true,
+  name: 'data1',
+  data: {										//data属性存储数据
+    something: true,
+    name:'chenhaohao',
+    work:'boyan'
+  },
+  fillStyle: '#585',
+  x: 100, y: 700,
+  width: 100, height: 50
+});
+
+
+//------------------------------------图层检索-------------------------------
+$('canvas').getLayer(0);						//通过索引检索图层
+$('canvas').getLayer(-1);						//通过索引检索图层
+$('canvas').getLayer('myBox');				//通过图层名称检索图层
+
+$('canvas').getLayers()[1].x					//检索所有图层  索引数组
+
+var layers = $('canvas').getLayers()
+layers.reverse();							//所有图层倒序排列   0为最后一个图层
+
+
+$('canvas').getLayers(function(layer) {		//检索所有图层回调函数	
+  return (layer.draggable === true);
+});
+
+
+$('canvas').getLayers(function(layer){console.log(layer.name)})     //检索所有图层回调函数  ，触发当前函数后执行 回调操作结果
+
+$('canvas').getLayerGroup('myBoxes');		//图层组检索
+
+
+$('canvas').getLayerIndex('box20');			//检索图层name为box的图层所处第几层 
+
+
+
+$('canvas').getLayerIndex('box1')
+11
+$('canvas').getLayerIndex('data1')
+0
+$('canvas').getLayerIndex('box20')
+-1
+												//最后绘制的图层为-1层     最后绘制 图层越小
+
+
+//???????
+$('canvas').drawLayers();	//该drawLayers()方法清除画布，并绘制画布的图层
+
+$('canvas').drawLayers({
+  complete: function () {
+    console.log('done!');
+  }
+});
+//从v20.2.0开始，您还可以指定一个complete回调，以便在绘制所有图层时运行。如果您有任何图像图层，这可能很有用，因为jCanvas通常会在继续绘制其他图层之前等待这些图像异步加载。
+
+
+
+
+
+//-----------------------------------------操作图层---------------------------
+$('canvas').setLayer('data1', {							//设置图层属性
+  fillStyle: '#36b',
+  rotate: 30,
+  x: '+=100',
+  y: '-=100',
+  text:'hello'
+})
+.drawLayers();
+
+
+
+//$('canvas').setLayers({								//对所有图层设置属性
+//fillStyle: '#36b',
+//rotate: 30
+//})
+//.drawLayers();
+
+
+
+$('canvas').setLayers({							//回调函数对图层进行过滤
+  fillStyle: '#36b',
+  rotate: 30
+}, function(layer) {
+  return (layer.name === "box11111");
+})
+.drawLayers();
+
+
+$('canvas').setLayerGroup('myBoxes11111', {				// 对图形组进行操作
+  fillStyle: '#36b',
+  rotate: 30
+})
+.drawLayers()
+
+
+//$('canvas').moveLayer('box', 1);						//移动图层到指定索引
+//$('canvas').removeLayer(0);
+//$('canvas').removeLayer('data1').drawLayers()				删除指定图层并重绘
+//$('canvas').removeLayers().drawLayers() 						//删除所有图层
+
+
+//
+//$('canvas').removeLayers(function(layer) {
+//return (layer.draggable === true);
+//});
+//删除图层组
+//使用该removeLayerGroup()方法，您可以从位于同一图层组的图层数组中删除任何图层。
+//
+//// Remove all layers in the group 'myBoxes'
+//$('canvas').removeLayerGroup('myBoxes');
+//要从组中动态删除现有图层，请使用该removeLayerFromGroup()方法。
+//
+//// Remove the layer with the name 'box'					//删除图层组中的图层
+//// from the group 'myBoxes'
+//$('canvas').removeLayerFromGroup('box', 'myBoxes');
+
+
+
+
+//----------------------------------------图层动画----------------
+
+
+//.animateLayer('',{},1000,fun)   
+//		function(layer){       }
+//		$(this).animateLayer
+//$('canvas')
+//.animateLayer('data1', {
+//x: 150, y: 150,
+//width: 100, height: 50
+//}, 5000, function(layer) {
+//   
+//			$(this).animateLayer(layer, {
+//			    fillStyle: 'rgb(204, 51, 51)',
+//			    x: 250, y: 100,
+//			    rotate: 360
+//			}, 'slow', 'swing');
+//});
+
+
+
+//$('canvas')
+//.animateLayer('data1', {
+//x: 500, y: 500,
+//width: 1000, height: 500
+//}, 1000, 'swing');
+
+
+//$('canvas').animateLayer(0, {			//动态修改属性
+//rotate: '+=360',
+//x: '-=50'
+//});
+
+
+//$('canvas').animateLayer('data1', {			//对x使用回调函数
+//x: function(layer) {
+//  return Math.pow(layer.x, 2);
+//}
+//});
+
+
+//$('canvas').animateLayerGroup('myBoxes', {			//对图形组使用动画效果	
+//y: 700
+//}, 1000);
+
+
+$('canvas').stopLayer('myBox');   // 停止动画
+$('canvas').stopLayer('myBox', true);	 //删除排队动画	
+$('canvas').stopLayerGroup('myGroup');	//停止组动画
+//$('canvas').delayLayer('data1', 3000).animateLayer('data1', {			//延迟操作
+//			x:200,
+//			y:200
+//	}
+//);
+
+$('canvas').delayLayerGroup('myGroup', 500); //延迟组
+
+  
+
+
+//---------------------------路径-----------------
+//绘制点按照路径走
+
+
+//路径
+x = 200
+y = 500
+$('canvas').drawPath({
+  name:'path1',
+  layer:true,
+  strokeStyle: '#000',
+  strokeWidth: 4,
+  p1: {
+    type: 'line',
+    x1: x+200, y1: 50+y,
+    x2: x+100, y2: 150+y,
+    x3: x+200, y3: 150+y,
+    x4: x+120, y4: 200+y,
+    x5: x+400, y5: 200+y,
+    x6: x+400, y6: 200+y+100,
+    x7: x+120, y7: 200+y+200,
+    x8: x+20, y8: 200+y+200,
+  }
+});
+
+//绘制圆点
+$('canvas').drawArc({
+  layer:true,
+  name:'dian',
+  fillStyle: '#58d',
+  shadowColor: '#000',			//阴影颜色
+  shadowBlur: 10,			//阴影范围
+  x: x+150, y: y+50,
+  radius: 5
+});
+
+
+
+//   点路径动画		
+path_json = $('canvas').getLayer('path1').p1
+	for(i=0;i<10;i++){
+		chan_status_x = path_json.hasOwnProperty('x'+i)
+		chan_status_y = path_json.hasOwnProperty('y'+i)
+//		console.log(chan_status,i,'x'+i)
+		if(chan_status_x && chan_status_y){
+
+			$('canvas').animateLayer('dian', {			//动态修改属性
+					x:path_json['x'+i],
+					y:path_json['y'+i]
+			},2000, 'swing');
+
+		}
+	}
+
+console.log(1)
+
+</script>
+
+</html>
