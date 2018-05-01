@@ -1,3 +1,39 @@
+
+
+--------jcanvas-----
+function checkMonthJia(year,month){    //month 加一个月
+	if( month == 12){
+		month = 1
+		year = year + 1
+	}
+	else{
+		month = month + 1
+	}
+	return year,month
+}
+//console.log(checkMonthJia(2018,5))
+
+
+
+
+
+
+opacity: 0.5,	透明度
+fromCenter: false, 		//设置条形图   绘制起点 从左上角开始
+
+
+// 鼠标点击事件
+cursors: {
+						    // Show pointer on hover
+						    mouseover: 'pointer',
+						    // Show 'move' cursor on mousedown
+						    mousedown: 'move',
+						    // Revert cursor on mouseup
+						    mouseup: 'pointer'
+						  }
+
+
+
 http://www.jb51.net/article/94702.htm
 
 insert into test values(1,2,3,4),(1,2,3,4);
