@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+	{% include 'header_title.html' %}
+<body class="hold-transition skin-blue sidebar-mini"> 
+<!--<body class="hold-transition skin-blue sidebar-mini sidebar-collapse"> -->
+<div class="wrapper">
+
+	{% include 'header.html' %}
+  <!-- Left side column. contains the logo and sidebar -->
+	{% include 'left_new.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1> <span id = 'title'></span>
+        <small> <span id = 'title_mes'></span></small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li><a href="/proprietary/html?name=kuorong_new"><button type="button" class="btn btn-primary" style = "margin-right:20px;">扩容申请单</button></li>
+        <li><a href="/proprietary/index/"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active" id = 'mianbaoxie'></li>
+      </ol>
+    </section>
+
+    <section id = 'main' class="content">
+
+      <!-- 动态展示区域 -->
+
+
+      <!-- Main row -->
+        <!--  动态区域 -->
+        <div id="are" class="row">
+
+
+                <!-----排期图---->
+
+
+                        <div class="col-md-12">
+                                <div class="box">
+                                            <div class="box-header with-border">
+                                              <h3 class="box-title">专有云扩容计划</h3>
+
+                                              <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                </button>
+                                                <div class="btn-group">
+                                                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-wrench"></i></button>
+                                                  <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">编辑</a></li>
+                                                  </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                              </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div id="paiqi"></div>
+                                            </div>
+                                <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+
+
+                <!-----排期图---->
+
+
+
+
+
+
+
+       		<!-----统计 饼图等---->
+
+
+                        <div class="col-md-4">
+                                <div class="box">
+                                            <div class="box-header with-border">
+                                              <h3 class="box-title">扩容项目状态</h3>
+
+                                              <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                </button>
+                                                <div class="btn-group">
+                                                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-wrench"></i></button>
+                                                  <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">编辑</a></li>
+                                                  </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                              </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div id="pie" style="width: 400px;height:400px;"></div>
+                                            </div>
+                                <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+
+
+		<!-----统计 饼图等---->
+
+
+
+
+
+
+
+                <!-----统计 柱形图等---->
+
+
+                        <div class="col-md-4">
+                                <div class="box">
+                                            <div class="box-header with-border">
+                                              <h3 class="box-title">PMO扩容计划预申请排名</h3>
+
+                                              <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                </button>
+                                                <div class="btn-group">
+                                                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-wrench"></i></button>
+                                                  <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">编辑</a></li>
+                                                  </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                              </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div id="pmokuorongguihua" style="width: 400px;height:400px;"></div>
+                                            </div>
+                                <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+
+
+                <!-----统计 柱形图---->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-----统计 进度条---->
+
+
+                        <div class="col-md-4">
+                                <div class="box" style="height:463px;">
+                                            <div class="box-header with-border">
+                                              <h3 class="box-title">扩容项目进度</h3>
+
+                                              <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                </button>
+                                                <div class="btn-group">
+                                                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-wrench"></i></button>
+                                                  <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">编辑</a></li>
+                                                  </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                              </div>
+                                            </div>
+                                            <!-- /.box-header -->
+					    <div class="box-body" id="jindutiao" style="position: relative; height: 380px; OVERFLOW: auto; ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            </div>
+                                <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+
+
+		<!-----统计 进度条 ---->
+
+
+
+
+
+
+
+
+
+		<!----扩容申请表---->
+
+                        <div id = "shenqingbiao" class="col-md-8">
+                                <div class="box">
+
+
+
+
+
+					<div class="nav-tabs-custom" style="">
+						    <!-- Tabs within a box -->
+						    <ul class="nav nav-tabs pull-left ui-sortable-handle">
+						      <!--<li class="active"><a class="tooltip-test" id="dengwo_mes" href="#table1" data-toggle="tooltip" data-placement="top" title="">等我处理的</a></li>-->
+						      <li class="active"><a id="dengwo_mes" href="#table1" data-toggle="tab">等我处理的
+									<i class="fa fa-fw fa-info-circle"></i>
+								</a></li>
+							<!--<a id = "1_mes" href="" class="tooltip-test" data-toggle="tooltip" data-placement="top" title="">-->
+						      <li><a href="#table2" data-toggle="tab">我处理过的</a></li>
+						      <li><a href="#table3" data-toggle="tab">我提交的</a></li>
+						    </ul>
+						    <div class="tab-content no-padding">
+
+						      <!-- Morris chart - Sales -->
+						      <div class="chart tab-pane active" id="table1" style="position: relative; height: 340px; OVERFLOW: auto; ">
+						             <table id = "" class="table table-hover">
+						                <tbody id = "deng_wo_chu_li">
+								<tr>
+						                  <th>客户名称</th>
+						                  <th>项目名称</th>
+						                  <th>计划开始时间</th>
+						                  <th>当前状态</th>
+						                  <th>提交信息</th>
+						                </tr>
+								 </tbody></table>
+
+						     </div>
+
+
+
+								  
+								 
+
+						      <div class="chart tab-pane" id="table2" style="position: relative; height: 340px; OVERFLOW: auto; ">
+
+						             <table  class="table table-hover">
+						                <tbody id = "chu_li_guo">
+								<tr>
+						                  <th>客户名称</th>
+						                  <th>项目名称</th>
+						                  <th>计划开始时间</th>
+						                  <th>当前状态</th>
+						                  <th>提交信息</th>
+						                </tr>
+								 </tbody></table>
+
+
+
+
+
+
+  						      </div>
+
+						      <div class="chart tab-pane" id="table3" style="position: relative; height: 340px; OVERFLOW: auto; ">
+
+						             <table id = "" class="table table-hover">
+						                <tbody id = "wo_ti_jiao">
+								<tr>
+						                  <th>客户名称</th>
+						                  <th>项目名称</th>
+						                  <th>计划开始时间</th>
+						                  <th>当前状态</th>
+						                  <th>提交信息</th>
+						                </tr>
+								 </tbody></table>
+
+
+
+  						      </div>
+						     </div>
+					</div>
+
+
+
+
+
+
+                                 <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+		<!----扩容申请表---->
+
+
+
+
+
+		<!----最近申请---->
+
+                        <div id = "zuijinshenqing_div" class="col-md-4">
+                                <div class="box">
+
+
+						<div class="box box-primary">
+									<div class="box-header ui-sortable-handle" style="cursor: move;">
+									  <i class="ion ion-clipboard"></i>
+
+									  <h3 class="box-title">最近申请</h3>
+
+									</div>
+									<!-- /.box-header -->
+									<div class="box-body" style="position: relative; height: 340px; OVERFLOW: auto; ">
+									  <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+									  <ul id = 'zuijin' class="todo-list ui-sortable">
+
+
+
+
+									  </ul>
+									</div>
+									<!-- /.box-body -->
+
+						 </div>
+
+
+
+                                 <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+		<!----最近申请---->
+
+
+
+
+
+
+
+
+
+
+
+		<!----项目统计排期表---->
+
+
+                        <div class="col-md-12">
+                                <div class="box">
+                                            <div class="box-header with-border">
+                                              <h3 class="box-title">项目排期表</h3>
+
+                                              <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                </button>
+                                                <div class="btn-group">
+                                                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-wrench"></i></button>
+                                                  <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">编辑</a></li>
+                                                  </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                              </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+					
+							<!--<table id="table"style="width:6000px;"-->
+						<button id = "chakan" type="button" class="btn btn-primary" style="margin-right:20px;">选择查看进度</button>
+							<table id="table"
+                						data-search-align="left"
+                						data-search="true">
+                					</table>
+                                            </div>
+                                <!--box end -->
+                                </div>
+                        <!--md-4 end -->
+                        </div>
+
+
+
+		<!-----项目统计排期表 ---->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!--  row end -->
+
+        <!--  动态区域 -->
+      <!-- Main row -->
+
+
+
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+	{% include 'footer.html' %}
+
+
+
+
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+	{% include 'footer_js.html' %}
+
+<!-- code --->
+<script type="text/javascript" src='/static/tianyan/js/kuorong_main.js'></script>
+<script type="text/javascript" src='/static/tianyan/js/kuorong_paiqi.js'></script>
+<!--<script type="text/javascript" src='/static/tianyan/js/kuorong_rili.js'></script>-->
+<script type="text/javascript" src='/static/tianyan/js/kuorong_pie.js'></script>
+<script type="text/javascript" src='/static/tianyan/js/kuorong_jindutiao.js'></script>
+<!--script type="text/javascript" src='/static/tianyan/js/kuorong_bar.js'></script>-->
+<script type="text/javascript" src='/static/tianyan/js/kuorong_pmokuorongguihua.js'></script>
+<script type="text/javascript" src='/static/tianyan/js/kuorong_table.js'></script>
+<script type="text/javascript" src='/static/tianyan/js/kuorong_zuijin.js'></script>
+
+
+</body>
+</html>
