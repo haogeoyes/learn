@@ -243,7 +243,12 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 > bable 插件 https://www.babeljs.cn
 + vue 脚手架 vue-cli内置了babel，如果需要可以修改兼容版本
 
-> vscode 好看简洁 强大 sublime webstorm
+## vscode 好看简洁 强大 sublime webstorm
++ https://marketplace.visualstudio.com/items?itemName=ruakr.ftp-kr
++ https://www.javascriptcn.com/read-7177.html
+
+## mnd 开发社区
++ https://developer.mozilla.org/zh-CN/
 
 
 
