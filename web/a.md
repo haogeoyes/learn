@@ -102,7 +102,7 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 
 
 # es6
-- 模板字符串
+> 模板字符串
 	- var s1 = `111`
 	- 解决痛点  字符串拼接
 	- var s1 = `hello ${name}`
@@ -111,4 +111,73 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 			<span></span>
 		 </div>`
 ```
+	- app 开发 react native？weex？
+> 解构赋值
+```
+	获取对象
+	var obj = {name:'aa',age:18}
+	let { name,age } = obj;  //obj.name 创建了两个变量
+```
+	- 减少全局变量污染?
+	- 有什么作用  可以节省一二写字符
+```
+	//使用结构赋值
+	function fn(option){
+		//option.width
+	}
+	fn({
+		width:100,
+		height:100,
+		age:50
+	})
+
+	//接受对象自变量  局部变量
+	function fn_2({ width,height,age}){
+		console.log(width,height,age)
+	}
+
+```
+	- 其他用法
+```
+	var { name:obj2Name } = obj  //创建新变量 obj2Name
+```
+	- 属性的简写
+```
+        var a = 3 ; var b = {a} ; console.log(b); // {a:3}
+	var c = 4
+	var d = {a,c}
+        {a} === {a: a}
+```
+
+> rest 参数
+```
+	function fn(){
+		//arguments 函数内部局部变量  调用函数传递的是实参数
+		console.log(arguments.length)
+		//第一个实参
+		console.log(arguments[0])
+		for(i in arguments){
+			console.log(arguments[i])
+		}
+	}
+	fn(1,2,3,4,5)
+```
+	- es6 箭头函数内部不能使用arguments
+		- rest 参数弥补这个问题
+```
+	// ...args rest参数的使用方式
+	//产生了一个变量，是数组，包含所有实参
+	function fn(...args){
+		//验证数组
+		console.log(args instanceof Array)
+		console.log(Object.prototype.toString.call(args))  //"[object Array]"
+		console.log(Array.isArray(args)) //es5 方法
+		console.log(args)
+	}
+	fn(1,2,3)
+```
+
+
+
+
 
