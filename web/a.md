@@ -252,4 +252,156 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 
 
 
+#20180531 JS高级
+##bind方法实现
++ 1、bind方法放在函数的原型中
+```
+	Function.prototype._bind = function(target){
+		return function(){}  //不可以
+		//利用闭包 创建内部函数  返回新函数
+		return (function(){
+			//执行fn里面的逻辑
+			this.call(target);
+		})()
+	}
+	function fn(
+		console.log(this)
+	){}
+	fn.bind({age:18})
+	var _f3 = fn.bind({age:11})
+	_f3()
+```
+
+##对象的扩展
+```
+	Object.assign 对象的浅拷贝
+	var source={age:18,height:170}
+	//克隆新对象
+	var target={};
+	var newObj = Oject.assign({},source)
+```
+
+
+##回调地狱 Permise
+```
+	function f1(){
+		setTimeout(()=>{
+			console.log(1)
+		},1000)
+	}
+	function f2(){ return new Permise(resolve=>{
+		//告诉外界我已经执行完了
+		resolve()
+		})
+	}
+	f1().then(res=>{
+		return f2();
+	}).then(res=>{
+		return f3();
+	})
+```
++promise es6  sync es8
++rxjs
++Promise 错误处理方式
+```
+	function getPromise(fn){
+		return new Promise(resove=>{
+			$.get('/apie',function(res){
+				//res
+			})
+
+		})
+	}
+	getPromise().then(res=>{
+		//res 服务器中获取数据
+	})
+
+	function getPromise(fn){
+		return new Promise(resove=>{
+			$.ajax({
+				url:'/api',
+				success(res){
+					resolve(res);  //成功
+				},
+				error(res){
+					reject(resError); //失败处理
+				}
+			})
+
+		})
+	}
+
+	getPromise().then(res=>{
+	
+	},resError=>{
+		console.log(resError)
+	})
+	//第一个参数成功回调   第二个参数 失败回调
+
+
+	第二种错误处理方式
+	getPromise.then(res=>{
+		//成功
+	}).catch(resError=>{
+		//失败
+	})
+
+	//区别 ，推荐第二种
+	//第二种 强大  不仅仅可以捕获到 reject 传递的参数
+	//还可以捕获到 成功的毁掉中发生的错误
+
+```
++catch
+```
+	function f1(name){
+		return new Promise((resolve,reject)=>{
+			setTimeout(()=>{
+				if(name=='a'){
+					resolve('成功')
+				}else{
+					reject('失败')
+				}
+			})
+		})
+	}
+	f1('a').then(res=>{console.log(11111)})
+	f1('a').then(res=>{
+		console.log(11111)
+		var a=5;
+		a();  //代码发生了错误
+	}).catch(res=>{
+		console.log(res);
+		//成功中失败的代码也能捕获
+		
+	})
+```
+##async
+```
+	(async function(){
+		//异步操作 函数f1()
+		await f1();
+		console.log('第一步')
+		await f1();
+		console.log('第二步')
+	})()
+
+
+	function q(){
+	    return new Promise((resolve)=>{
+		setTimout(()=>{
+			resolve("hi")	;
+		},1000)
+	    })
+	}
+	(async function(){
+		const res = await q();
+		let res = await q();
+		const res1 = await q();
+	})()
+
+```
++ async 处理返回值
+
+
+
 
