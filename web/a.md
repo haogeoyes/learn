@@ -1,14 +1,14 @@
-#获取元素
+## 获取元素
 - 获取一个
 - 获取全部元素
 - 操作类样式 添加 移除 切换
 
-#data- 自定义属性
+## data- 自定义属性
 懒加载 使用？？？
 自定义属性  和 绑定id 对应
 3点 如何获取 如何设置 
 
-#文件读取 api
+## 文件读取 api
 - input file
   - one change 事件
      input.onchange=function(){
@@ -26,16 +26,16 @@
 - window.navigator.geolocation 经纬度 只能获取一次
 - 实时获取位置消息
 
-#本地存储
+## 本地存储
 - local  永久 20M  页面共享
 - session 当前浏览器有效 
 - window.localstorage.setitem get remove clean
 
-#操作多媒体  作业
+## 操作多媒体  作业
 - Dom 参考
 - 完成一个在线播放器 网页云音乐 播放 下载 快进 跳播功能时间对应
 
-#canvas
+## canvas
 - 统计图 
 - 小游戏  数据处理 图像处理
 - 1.落笔坐标点 2.连线 3.描边 stroke()
@@ -63,7 +63,7 @@
 - 平移 ctx.translate
 - 旋转 
 
-#typora
+## typora
 #markdown
 	- https://www.zybuluo.com/mdeditor
 
@@ -252,8 +252,8 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 
 
 
-#20180531 JS高级
-##bind方法实现
+# 20180531 JS高级
+## bind方法实现
 + 1、bind方法放在函数的原型中
 ```
 	Function.prototype._bind = function(target){
@@ -300,9 +300,9 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 		return f3();
 	})
 ```
-+promise es6  sync es8
-+rxjs
-+Promise 错误处理方式
++ promise es6  sync es8
++ rxjs
++ Promise 错误处理方式
 ```
 	function getPromise(fn){
 		return new Promise(resove=>{
@@ -351,7 +351,7 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 	//还可以捕获到 成功的毁掉中发生的错误
 
 ```
-+catch
++ catch
 ```
 	function f1(name){
 		return new Promise((resolve,reject)=>{
@@ -375,7 +375,7 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 		
 	})
 ```
-##async
+## async
 ```
 	(async function(){
 		//异步操作 函数f1()
@@ -399,9 +399,97 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 		const res1 = await q();
 	})()
 
+
+	var p = {
+		say:async ()=>{
+			await q();
+		},
+		run:async function(){
+			await q();
+		}
+	}
+
+    try{
+	(async ()=>{
+		let res = await p.say();
+		console.log(res)
+		await p.run();
+	})()
+    }catch(e){	
+	console.log(e)
+    }
+
 ```
 + async 处理返回值
+	- let 
+	- const
+```
+	async function get(){
+		var let res = await  timer()
+	}
+	get()
+```
++axios 也可以异步操作
 
 
+## class 类语法  原型继承的根
+```
+	function a(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	one = new a('hao',12)
+	//类的样式
+	class p{
+		//构造方法
+		constructor(name,age){
+			this.name = name
+			this.age = age
+		}
+	}
+	var s = new p('hao',18)
+```
++ class 类的方法
+```
+	function p(){
+	}
+	p.prototype.run=()=>{
+		console.log('run')
+	}
+	class s{
+		constructor(age){
+			this.age = age
+		}
+		run(){
+			console.log(`run class ${this.age}`)  //模板字符串
+		}
+		static down(){
+			console.log('class 类的静态方法')
+		}
+	}
+	var s1 = new s(18);
+```
++ 类的静态方法 static down(){}
+	- p.down()
++ 类的静态属性  通过自身属性访问的this static down(){}
+	- p.age
++ 类的继承  (原型继承）
+```
+		class p{
+			constructor(name){
+				this.name = name
+			}
+		}
+		class a extends p{
+			constructor(){
+				super(name);  //调用父类构造方法
+				//通过super 继承了name属性
+				this.age = age //自身构造属性
+			}
+		}
+```
+
+## model 模块
+## 框架封装
 
 
