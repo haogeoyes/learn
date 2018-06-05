@@ -492,4 +492,49 @@ bind并没有立刻执行这个函数，而是创建了一个新函数，新函�
 ## model 模块
 ## 框架封装
 
+#20180603
+#sources 断点 调试行
+```
+function f1(){
+	console.log(age)
+	var age=18;
+	console.log(age)
+}
+var length=100;
+f1();
+```
++ 变量作用域取决于作用域所处的范围 
+	- 页面加载完成
+
+# mpvue 小程序项目？？？？
+# 项目实战 封装库
++ 不依赖第三方库
++ 隔绝  只有$ jQuery
+
+```
+	(function(){
+		function jQuery(){
+		}
+	})(window)
+	//window.$ = window.jQuery = jQuery;
+	//相当于
+	window.jQuery = jQuery;
+	window.$ = jQuery;
+```
+
++ 获取div属性
+```
+	(function(){
+		function jQuery(){
+		}
+	})(window)
+	//window.$ = window.jQuery = jQuery;
+	//相当于
+	window.jQuery = jQuery;
+	window.$ = jQuery;
+```
+#$ css 封装实现
+#$.extend   拷贝继承 和 属性继承
++ obj1  obj2 的属性一一赋值obj3
++ 使用es6对象扩展运算符，改写extend方法
 
