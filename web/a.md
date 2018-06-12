@@ -565,3 +565,22 @@ f1();
 我的电脑  22:21:46
 /^\w/.test('abc')
 
+
+
+
+## 作业1
+### jquery：选择器引擎：Sizzle大量的使用了正则表达式
+```js
+    $("#abc")   //id
+    $(".abc")   //类
+    $("span")   //标签
+    /^#/.test('#abc')
+    /^\./.test('.abc')
+    /^\w/.test('abc')
+```
+
+## 作业2：写一个正则表达式，用于替换一个字符串的前后空格
++ 比如："   asdffsf  asdfasfsd asfas a "替换为"asdffsf  asdfasfsd asfas a"
+
+"    asdffsf  asdfasfsd asfas a ".replace(/^\s{1,}([\s\S]*?)\s{1,}$/,'$1')
+
