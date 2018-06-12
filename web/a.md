@@ -584,3 +584,5 @@ f1();
 
 "    asdffsf  asdfasfsd asfas a ".replace(/^\s{1,}([\s\S]*?)\s{1,}$/,'$1')
 
+### require 解决循环依赖问题
+
