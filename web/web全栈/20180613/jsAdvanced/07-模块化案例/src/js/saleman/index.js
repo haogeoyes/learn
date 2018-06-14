@@ -1,4 +1,4 @@
-define(["jquery","service/salemanService","saleman/add"],function($,salemanService,salemanAdd){
+define(["jquery","service/salemanService","saleman/add","saleman/edit"],function($,salemanService,salemanAdd,salemanEdit){
     return function(){
 
         console.log("数据服务：",salemanService)
@@ -21,7 +21,7 @@ define(["jquery","service/salemanService","saleman/add"],function($,salemanServi
                         <tbody>
                         ${salemanService.getList().map(item=>{
                             return `<tr><td>${item.name}</td><td>${item.age}</td><td>
-                            <button>编辑</button></td></tr>`
+                            <button data-tr="${item}" class="str_edit">编辑</button></td></tr>`
                         }).join("")}
                         </tbody>
                     </table>
@@ -31,8 +31,22 @@ define(["jquery","service/salemanService","saleman/add"],function($,salemanServi
 
         //进行添加操作
         $saleman.on("click",".add",function(){
+        // $saleman.on("click",function(){
+        //     console.log(this.hasClass('add'))
+        //     if($(this).hasClass("add")){
+        //         console.log(22222)
+        //     }
             salemanAdd();
         })
+        $saleman.on("click",".str_edit",function(){
+            console.log(this)
+        })
+        // $saleman.on("click","button",function(){
+        //     // console.log(this.hasClass(''))
+        //     console.log(this)
+        //     console.log(222222)
+        //     // salemanEdit();
+        // })
 
         $("#main .content").html($saleman);
 

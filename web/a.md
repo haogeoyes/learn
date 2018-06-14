@@ -586,3 +586,18 @@ f1();
 
 ### require 解决循环依赖问题
 
+
+# php
+## lamp 
++ https://blog.csdn.net/maia007/article/details/52133789?locationNum=9&fps=1
+```
+sudo apachectl start
+/etc/apache2/http.conf
+LoadModule php5_module libexec/aache2/libphp5.so
+sudo apachect1 restart
+php -v
+/Library/WebServer/Documents
+<?php phpinfo(); ?>
+
+```
+

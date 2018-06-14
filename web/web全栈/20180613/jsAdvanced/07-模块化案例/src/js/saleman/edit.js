@@ -4,7 +4,7 @@ define([
     "require",
     "saleman/index"],function($,salemanService,require){
     return function(){
-        console.log('单元格数据')
+        
         var addStr=`
             <form>
                 <label>姓名：</label><input name="name"/>
