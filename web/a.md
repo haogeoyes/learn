@@ -601,3 +601,18 @@ php -v
 
 ```
 
+# php
+```
+/Users/chenhaohao/git/learn/web
+http://127.0.0.1/web%E5%85%A8%E6%A0%88/20180616_php/day_01/code/01.php
+http://127.0.0.1/web全栈/20180616_php/day_01/code
+
+mac lamp 
+https://blog.csdn.net/maia007/article/details/52133789?locationNum=9&fps=1
+配置mysql mac mysql dmg
+vi /etc/paths  添加环境变量
+sudo mysqladmin  -u root -p password
+
+```
++ https://blog.csdn.net/li396864285/article/details/51939423
+
