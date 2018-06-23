@@ -24,10 +24,34 @@ echo $_SESSION['username']
 ### 请求转发
 
 + cookie 存储在客户端 ，服务器 
+
 + sessionStroage   客户端 本地存储 生命周期 关了阅览器就没了
+
 + localStroage  客户端 本地存储    关了不会  上一次播放时间
+
 + seeion   存储在服务器 以来cookie
+
 + 老师有个困惑？企业内有一个统一认证中心， 我的服务器判断session中是否包含用户信息，没有的话，我的服务器通过302跳转到认证服务器，后认证服务器再跳转到我的服务器，回来的请求为什么我的服务器可以直接获取到认证的用户名 身份信息
+
+  
+
+  
+
+### session 案例
+
+![image-20180623220637017](/var/folders/8q/sr4hfm2n5v96j4rtlk8v01_c0000gn/T/abnerworks.Typora/image-20180623220637017.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
