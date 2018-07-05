@@ -30,6 +30,28 @@ black 13 park
 
 
 
+# esp8266
+
++ https://www.espressif.com/zh-hans/support/iot-college/video  esp8266官网视频
++ mac esp工具链 https://esp-idf.readthedocs.io/zh_CN/latest/get-started/macos-setup.html
+
+```
+
+sudo easy_install pip
+sudo pip install pyserial
+
+https://pypi.org/project/wget/
+python -m wget https://dl.espressif.com/dl/xtensa-esp32-elf-osx-1.22.0-75-gbaf03c2-5.2.0.tar.gz
+
+tar -xzf ~/Downloads/xtensa-esp32-elf-osx-1.22.0-75-gbaf03c2-5.2.0.tar.gz
+export PATH=$PATH:$HOME/git/learn/esp8266/esp/xtensa-esp32-elf/bin
+alias get_esp32="export PATH=$PATH:$HOME/git/learn/esp8266/esp/xtensa-esp32-elf/bin"
+
+
+```
+
+
+
 
 
 # 2018-07-05 php 移动端
