@@ -32,6 +32,56 @@ black 13 park
 
 
 
+# 2018-07-05 php 移动端
+
++ iscroll
+
+
+
+#2018-07-03 php 项目
+
++ 接口文档 apizza
+
++ <label for='username'> 焦点 for 
+
++ 表单序列化
+
+  ```
+  arr = $('form').serializeArray()
+  for(i in arr){
+      arr[i].name 
+      arr[i].value
+  	putData[name]=value
+  }
+  $.ajax({
+      type:'POST',
+      url:'',
+      data:params,
+      dataType:'json',
+  })
+  ```
+
+  ​         
+
+
+
+
+
+# 2018-06-30 php 跨域资源共享
+
++ 阅览器 提示 跨域 但有数据 ， 需要服务端发送header数据
++ jsonp 只支持 get场景 数据量大，前后端 都需要修改
++ cors 跨域 只需要该 服务端 ，客户端不需要配置
++ 夜神  海马玩模拟器
++ 文件上传 jquery -fileupload    jq22.com
++ ![image-20180630230119412](./image-20180630230119412.png)
+
+
+
+
+
+
+
 # 2018-06-28 jquery 模板引擎
 
 ![image-20180628213829817](./image-20180628213829817.png)
