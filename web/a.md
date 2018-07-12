@@ -30,6 +30,21 @@ black 13 park
 
 
 
+# mongoose os
+
+```
+curl -fsSL https://mongoose-os.com/downloads/mos/install.sh | /bin/bash
+~/.mos/bin/mos --help      
+~/.mos/bin/mos
+
+```
+
+# WS2812B
+
++  可编程 灯带
+
+
+
 # esp8266
 
 + https://www.espressif.com/zh-hans/support/iot-college/video  esp8266官网视频
@@ -50,9 +65,287 @@ alias get_esp32="export PATH=$PATH:$HOME/git/learn/esp8266/esp/xtensa-esp32-elf/
 
 ```
 
+# nodejs 2018-07-12	刘
+
++ 安装
+
+  ```
+  This package has installed:
+  	•	Node.js v8.11.3 to /usr/local/bin/node
+  	•	npm v5.6.0 to /usr/local/bin/npm
+  Make sure that /usr/local/bin is in your $PATH.
+  
+  ```
+
+  ```
+  node -v
+  node console.js
+  ```
 
 
 
++ 对象  
+
+  + 全局 对象
+
+    + Process.env 环境变量
+
+    + 
+
+      ```
+      console.log(process.env)
+      ```
+
+      
+
+  + 核心 引用 服务器所能达成的需求
+
+  + 自定义对象
+
+
+
++ 接受命令行参数
+
+  ```
+  console.log(process.argv)
+  node -v
+  node -h
+  
+  let num1 = process.argv[2] - 0
+  let num2 = process.argv[3] - 0 //parseInt
+  let sum = num1 + num2
+  setTimeout(()=>{
+          console.log(num)
+  },2000)
+  
+  
+  ```
+
+
+
+
+
+
+
+
+
++ 实现规范
+
+  + commonjs  common定义后端规范
+
+    ```
+    
+    __dirname 目录
+    __filename 绝对文件路径
+    
+    一个文件一个模块
+    依赖一个模块 require('memodule
+    数据返回 module.exports 
+    
+    
+    ```
+
+  + path
+
+    ```
+    const path = require('path')  //path核心对象
+    //拼接路径
+    const mypath = path.join(__dirname,'//one//','//two//','//three///')
+    console.log(myPath)
+    
+    获取文件绝对路径
+    str = './//abc////efg.js'
+    let myth = path.resolve(str)
+    //拆分路径
+    let myth2 = path.parse(myth)
+    //修改文件名
+    myth2.base = 'rename2.txt' 
+    
+    //接受路径
+    path。format(myth2)
+    
+    
+    ```
+
++ 模块
+
+  + 模块的引用顺序
+  + 命名冲突
+  + commonjs规范解决了这些问题
+    + 一个文件一个模块
+    + 模块变量 内部作用域
+
+
+
++ 操作文件对象  fs文件模块
+
+  + const fs=require('fs')
+
+  + fs.read
+
+    ```
+    //引入核心对象
+    const fs = require('fs')
+    // err => Error|| null 两个对象
+    fs.readFile('./a.tf8','utf8',(err.data)=>{
+        if(err) throw err; //抛到控制台
+        console.log(data);  //打印是buffer 16进制 进制越大存储字符越少
+        //获取字符串数据 toString()  utf-8 GB2312
+        console.log(data.toString('utf8'))
+        //i o 输入 输出
+    });
+    
+    //fs.writeFile(path,data||string,callback)
+    fs.writeFile('a.txt','data',(err,)=>{
+        //windows目录层级深，写入会报错
+        if(err) throw err;
+        console.log('ok')
+    })
+    
+    //追加 方式1 appendFile(path,data,callback)
+    fs.appendFile('a.txt','追加内容',(err)=>{
+        if(err) throw err;
+        console.log('追加成功')
+    })
+    //追加方式2	flag r w a
+    fs.writeFile('a.txt','data',{flag:'a'},(err,)=>{
+        //windows目录层级深，写入会报错
+        if(err) throw err;
+        console.log('ok')
+    })
+    ```
+
+    + 此处为异步读写的
+
+    + 有回调函数  和 没有   异步 和同步读写
+
+      ```
+      let data = fs.readFileSync('a.txt','utf8');
+      console.log(data)
+      fs.writeFileSync('b.txt',data)
+      ```
+
+      + 第一个读需要嵌套 后写入
+
+      + 异步 和同步 比较的区别
+
+        ```
+        fs.readFileSync('mypath')
+        //阻塞后续操作
+        console.log('工作a')  被前面阻塞了，   
+        //读完操作
+        
+        //立刻操作
+        fs.readFile('mypath',()=>{
+            console.log('ok')
+        })
+        console.log('工作b') 没有被阻塞，工作b 没有被延误
+        ```
+
+        + 异步不阻塞 后续代码执行
+
+          > js 代码 执行时主线程  单线程
+
+          + 计算机多核  同时执行  cpu读完之后返回一个状态
+
+          + readfile了立刻做一个小标记， 昨晚后 再通知js单线程 叫他读文件   通过回调函数存取来
+
+          + eventloop 时间循环  主线程 工作环境
+
+            ![image-20180712224111438](./image-20180712224111438.png)
+
+            + 异步函数执行后会把callback 放入事件队列,然后主线程继续运行，等callback运行完了，然后再交给主线程运行
+
+              
+
+> 同步异步
+>
+> ```
+> kfc 买鸡腿  顾客a 反复问好了没
+> kfc 买鸡腿  顾客b  去吃饭区
+> 服务员只有一个人  厨房一群帮手
+> b 把任务 告诉 服务员  b该干嘛干嘛
+> 厨房主动送餐到服务区
+> 
+> 
+> ```
+>
+> 
+
+![image-20180712225510807](./image-20180712225510807.png)
+
+
+
+> 单线程 多线程
+>
+> 单进程 多进程
+
+```
+接受用户的请求报文 java 相应的时候 i o 同步机制 没写完需要等待
+不跟 io 操作 先关的代码 不阻塞
+cpu密集型   java 线程 内存开销大
+io密集型	node 单线程 主线程 和工作线程
+多个 访问请求  nginx 负载均衡  node io  java业务逻辑
+```
+
+```
+http = require('http')
+http.createServer((req,res)=>{
+    res.end('启动888端口')
+}).listen(888,()=>{
+    console.log('服务器启动')
+})
+
+mac 安装nginx
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+配置转发负载均衡
+upstream www.baidu.com{
+    server www.baidu.com:888 weight=1; 权重
+    server www.baidu.com:999 weight=1; 权重越小越高
+}
+
+nginx.conf
+http{
+    server{
+        listen 80
+        server_name www.baidu.com
+        location /tmp {
+            # root html;
+            # index index.html,index.php;
+            proxy_pass http://www.baidu.com  配置代理
+        } 
+    }
+}
+start nginx
+nginx -s reload
+```
+
+
+
+```
+单线程的好处：
+（1）多线程占用内存高
+（2）多线程间切换使得CPU开销大   上下文切换
+（3）多线程由内存同步开销
+（4）编写单线程程序简单
+（5）线程安全
+ 
+单线程的劣势：
+（1）CPU密集型任务占用CPU时间长
+（2）无法利用CPU的多核
+（3）单线程抛出异常使得程序停止
+```
+
+
+
+
+
+# 2018-07-07 php 移动端2  朱
+
++ mescroll 精致的js库
+  + better-scroll
+  + 
 
 # 2018-07-05 php 移动端
 
