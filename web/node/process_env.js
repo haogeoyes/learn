@@ -7,4 +7,5 @@ if(stuOrTeacher === 'me'){
 }else{
 	console.log('no')
 }
+console.log(111111)
 
