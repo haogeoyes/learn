@@ -65,6 +65,408 @@ alias get_esp32="export PATH=$PATH:$HOME/git/learn/esp8266/esp/xtensa-esp32-elf/
 
 ```
 
+
+
+# nodejs 2018-07-17 express
+
+> express
+
+```
+const express = require('express')
+let app = express();
+let router = express.Router();
+app.listen(8888,()=>{
+    //启动完成
+})
+app.use('/url',(req,res,next)=>{  //按代码顺序执行
+    console.log('url1')
+    next()  //继续   当没 写返回
+}) //一件事
+
+app.use('/url2',(req,res,next)=>{  //按代码顺序执行
+    console.log('url2')
+    next()  //继续   当没 写返回
+}) //一件事
+	
+```
+
+> 应用级中间件
+>
+> 路游级中间件
+
+```
+const express = require('express')
+let server = express();
+let router = express.Router();
+
+
+router.get('/demo',(req,res)=>{  //按代码顺序执行
+    console.log('url1')
+    res.end('login')//页面返回
+}) //一件事
+.get('/logout',(req,res)=>{
+    res.end('logout')
+})
+.get('/json',(req,res)=>{
+    res.json([{name:'aaa'}])
+})
+.get('/redirect',(req,res)=>{
+    res.redirect('http://www.baidu.com')  
+    //重定向 是服务器给浏览器的302的标识
+    //服务器 返回windows.location 地址 ，浏览器根据location请求
+})
+.get('/jsonp',(req,res)=>{
+    res.jsonp('jsonp')
+    // http://127.0.0.1:8888/jsonp?callback=jsonpcallback
+    /*
+    	/**/ typeof jsonpcallback === 'function' && jsonpcallback("jsonp");
+    */
+})
+.get('/download',(req,res)=>{
+    res.download('http://www.baidu.com')
+    //res content dispostion : attachent
+})
+
+
+
+server.use(router)
+server.listen(8888)
+```
+
++ 模板引擎
+
+  ```
+  const express = require('express')
+  let server = express();
+  let router = express.Router();
+  
+  server.engine('.html',require('express-art-template'))
+  
+  server.set('view engin','.html')
+  
+  router.get('/login',(req,res)=>{  //按代码顺序执行
+      console.log('url1')
+      res.end('login')//页面返回
+  }) //一件事
+  
+  
+  
+  
+  server.use(router)
+  server.listen(8888)
+  ```
+
+  ```
+  imports.num:{{num}}
+  imports.reverse {{re}}
+  ```
+
+  
+
++ 日志界别
+
+  + debug 不压缩 不混淆代码  实时更新
+  + 非debug  压缩 合并 list.html静态数据不实时更新
+
+  ```
+  server.set('view options',{
+      debug: process.env.NODE_ENV !== 'production',
+      imports:{
+      	//数据的导入 过滤显示的操作
+          num:1,
+          reverse:function(str){
+          	return '~.~'+str+'~.~
+          }
+      }
+  })
+  ```
+
+
+
+> 第三方中间件  body-parser
+
+```
+const bodyParse = require('body-parser')
+app.use(bodyParser.json())
+```
+
+
+
++ 静态资源
+
+```
+router.use('/public',express.static('./js'))
+```
+
++ 错误处理
+
+```
+router.get('/',(req,res,next)=>{
+	console.log(req.url)
+    let errorPath = './abc/e.txt';
+    try{
+        fs.readFileSync(errorPath);
+        res.render('index');
+    }catch(err){
+        //throw err; //暴露给用户
+        next(err)
+    }
+})
+
+//最后的一条路由 都给你处理
+.all('*',(req,res)=>{
+    
+})
+//处理错误
+server.use((err,req.res.next)=>{
+    res.send('<h1> 亲爱的用户，访问出现问题</h1>')	//显示html  自动判断 utf8 处理
+})
+
+```
+
+> 例子
+
+nodemon ./xxxjs 会自动重启服务器
+
++ 展示用户列表页面 （页面中请求js)
+
+  ```
+  //处理图片 中间件
+  let heros =[
+      {name:1111,img:'imgs/1.jpg'},
+      {name:2111,img:'imgs/2.jpg'}
+  ]
+  server.use(e'x'press)
+  route.get(/)
+  route.
+  
+  解析文件 模块
+  formidable  //接近原生
+  express-formidable
+  koa-formidable
+  const path = requse()
+  form.uploadDir = path.join(__dirname,'public','imgs')
+  form.keepExtensions = true;
+  
+  .post('/add'()=>{
+      ver form = new formidable.In....
+      form.parse(req,function)
+  })
+  
+  ```
+
+  
+
+  ```
+  {{each heros}}
+  	<li>
+  		{{$value.name}}
+  		<img src="{{$value.img}}">
+  	</li>
+  {{/each}}
+  <form action="/add" method="post" enctype="
+  ```
+
+  
+
+
+
+
+
+
+
+> browerHistory ???? 前端路游  vue 后讲
+
+# nodejs 2018-07-14  
+
+> 遍历文件夹
+
++ 嵌套层级过深  fs.access()
+
++ http://nodejs.cn/api/fs.html
+
+  + 接收参数
+  + 修正路径
+  + 判断文件是否存在
+  + 判断文件夹 还是 文件
+  + Package.json 包的说明文件
+  + npm  init  -y
+  + Npm install  art-template jquery —save 记录依赖
+
+  ```
+  const path = require('path')
+  const fs = require('')
+  testReadFIles(dir){
+      let inputPath = path.resolve(process.argv[2])
+      try{
+          fs.accessSync(inputPath,fs.constants.F_ok)
+          let state = fs.statSync(input);
+          if(state.ifFile()){
+              console.log(inputPaht)
+          }else if(state.isDirectory()){
+              let files = fs.readdirSync(inputPath);
+              console.log('是一个文件夹')
+              files.forEach(file =>{
+                  testReadFIles(path.join(dir,file));
+              })
+          }
+      }catch(e){
+          console.log(e)
+  
+      }
+  }
+  ```
+
+  + 删除依赖 
+
+  ```
+  dependecies:{}
+  ```
+
++ 凡事通过 require 引入的包 都是要使用对象的属性
+
+  ```
+  const myobj = require('./obj.js')
+  ```
+
++ sudo npm install  http-server -g
+
+  ```
+  sudo npm install   http-server -g
+  /usr/local/bin/hs -> /usr/local/lib/node_modules/http-server/bin/http-server
+  /usr/local/bin/http-server -> /usr/local/lib/node_modules/http-server/bin/http-server
+  + http-server@0.11.1
+  added 25 packages in 9.751s
+  ```
+
++ npm yarn
+
+  + 离线缓存
+  + 镜像源的选择
+
++ nrm 是npm 的镜像源管理工具
+
+  + nrm  add http
+  + nrm  use taobao
+  + nrm ls
+  + npm i jquery
+  + npm i  -g pm2
+
++ nrm  cnpm是淘宝私有
+
++ nvm  切换node 版本档次不高   ，安装低版本 修改路径，使用时修改全局变量
+
+  ```
+  const jq = require('jquery')
+  console.log(require.resolve('jquery'))  //获取包入口路径	
+  ```
+
+  
+
+> http 核心模块
+
++ 故事剧情 
+
+  + 5大特点
+
+    + 简单 轻
+
+    + 无连接（不为每一个请求保持）
+
+    + 无状态（服务器不记得用户是谁）cookie
+
+      
+
+```
+const http = require('http')
+let server = http.createServer()
+server.on('request',(req,res)=>{
+    res.end('xxxxxx')
+    console.log(req.headers)//头
+    console.log(req.url) // 行
+    console.log(req.method)  // 行
+    req.on('data',(data)=>{
+        console.log(data.toString())
+        //写头 1、一次写 2、多次写
+        res.writeHeader('a','a')
+        res.writeHeader('a','a')
+        res.writeHeader('a','a')
+        res.writeHead(200)'
+        
+        res.write('aaaaaaa')
+        res.write('bbbbb')
+        res.end('zzzzz')
+    })
+    
+})
+server.listen(8888,()=>{
+    console.log('服务器启动888端口')
+})
+
+node web.js
+http://127.0.0.1:8888/
+
+```
+
+1、进行中
+
+2、完成
+
+3、重定向
+
+4、客户端异常
+
+5、服务器异常
+
+> 接口
+
+```
+const http = require('http')
+const fs = resquire('fs')
+http.createServer((req,res)=>{
+    if(req.url === '/'){
+        fs.readFile('./index.html',(err,data)=>{
+            res.writeHead(200,{'content-type':'text/html;charset=utf-8'})
+        })
+    }else if (req.url === '/test' && req.method === 'GET'){
+        res.write
+    }
+})
+
+<html>
+	<body>
+		<button id = 'btn'>点我<btn>	
+		ajx
+	</body>
+</html>
+```
+
++ readState
+  + 1 建立连接
+  + 2 数据处理
+
+> Koa2  mysql mongodb express
+
+
+
+> postman工具
+
+
+
+
+
+
+
+> mongodb
+
+> Webpack
+
+
+
+
+
+
+
 # nodejs 2018-07-12	刘
 
 + 安装
@@ -478,6 +880,8 @@ CPU切换到内核态, 并跳到位于内存指定位置的指令, 这些指令�
 另外一个隐藏的损耗是上下文的切换会**扰乱**处理器的**缓存机制**。简单的说，一旦去切换上下文，处理器中所有已经缓存的内存地址一瞬间都作废了。还有一个显著的区别是当你改变虚拟内存空间的时候，处理的页表缓冲（processor’s Translation Lookaside Buffer (TLB)）或者相当的神马东西会被全部刷新，这将导致内存的访问在一段时间内相当的低效。但是在线程的切换中，不会出现这个问题
 
 
+
+> phonegap  单页app？？？？
 
 
 
@@ -1320,4 +1724,37 @@ sudo mysqladmin  -u root -p password
 张亚军
 我UI，前端懂一点，
 ```
+
+
+
+
+
+# 自考 20180715
+
+```
+1 先选好要考的课程，建议难易搭配，如果考4门，建议2难2易。所谓难的就是自己不擅长的，如果分不清难易，一般学分高的课程较难一些。容易的就是擅长的，比如我对哲学，语文，政治类的公共课都比较擅长，对统计，计算题多的课程不擅长。
+2 提前准备，一般考试前四个月就要开始动起来了，考4门课，每门课至少要给1个月的复习时间才够，10月考试，现在就要看书了，否则如果你不是天才，时间真的来不及，自考是一个积累的过程。我们的目的是一次过4门，不花上大量时间是不可能成功的，别懒惰了，现在就去拿书吧。
+3 最最重要的，做题目，别浪费时间在教材上了，教材最多通读一遍，其实我考到现在，教材基本上没看过，那么多字，看一遍也要好几天，何况大多数内容看完就忘。所以还是拿起辅导书题库做题目吧，题目一定要做多遍，至少10遍以上，做到什么程度呢，这样说吧，看到题目前几个字，马上就能说出答案。如果到了这个水平了，恭喜你，你一定可以过了。前面说了，平均一门课的题目做一个月下来，基本没什么问题。
+4 其他没什么了，就是要有信心，要经常告诉自己，没什么难的，别人能考过，我也能考过，考试的时候调整好心态，做不出题目别慌张，100分的卷子只要考60分就合格了，丢几分十来分无所谓的，真的没什么难的
+
+
+```
+
+| 公共基础课程 | 1                                                            | 03706                                    | 思想道德修养与法律基础 | 2                     | 2018-10-20 9:00~11:30  |      |
+| ------------ | ------------------------------------------------------------ | ---------------------------------------- | ---------------------- | --------------------- | ---------------------- | ---- |
+| 2            | 12656                                                        | 毛泽东思想和中国特色社会主义理论体系概论 | 4                      | 2018-10-21 9:00~11:30 |                        |      |
+| 3            | 00018                                                        | 计算机应用基础                           | 2                      | --                    |                        |      |
+| 4            | 00019                                                        | 计算机应用基础(实)                       | 2                      | 以主考院校为准        |                        |      |
+| 核心课程     | 5                                                            | 00312                                    | 政治学概论             | 6                     | 2018-10-21 14:30~17:00 |      |
+| 6            | 00107                                                        | 现代管理学                               | 6                      | --                    |                        |      |
+| 7            | 03350                                                        | 社会研究方法                             | 4                      | --                    |                        |      |
+| 8            | 00277                                                        | 行政管理学                               | 6                      | --                    |                        |      |
+| 9            | 00147                                                        | 人力资源管理(一)                         | 6                      | 2018-10-20 9:00~11:30 |                        |      |
+| 10           | 00182                                                        | 公共关系学                               | 4                      | 2018-10-21 9:00~11:30 |                        |      |
+| 11           | 10237                                                        | 行政管理理论与实践综合作业(实)           | 5                      | 以主考院校为准        |                        |      |
+| 选修课程     | 12 13 14 15                                                  | 04729                                    | 大学语文               | 4                     | 2018-10-21 9:00~11:30  |      |
+| 00040        | 法学概论                                                     | 6                                        | --                     |                       |                        |      |
+| 00292        | 市政学                                                       | 6                                        | --                     |                       |                        |      |
+| 00341        | 公文写作与处理                                               | 6                                        | 2018-10-20 14:30~17:00 |                       |                        |      |
+| 说明         | 说明:1.“03707毛泽东思想、邓小平理论和“三个代表”重要思想概论”可顶替“12656毛泽东思想和中国特色社会主义理论体系概论”课程。 2.00018/00019计算机应用基础课程须参加全国计算机等级一级或以上考试并取得等级证书。 3.选修课程，可在推荐选修课程中选考，也可在我省现行开考所有专科专业中选考与本专业核心课程不同的课程，课程门数不少于4门，学分不低于22学分。不得跨专业选修实践课。 |                                          |                        |                       |                        |      |
 
