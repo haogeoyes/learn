@@ -67,6 +67,99 @@ alias get_esp32="export PATH=$PATH:$HOME/git/learn/esp8266/esp/xtensa-esp32-elf/
 
 
 
+# nodejs 2018-07-19 mongodb
+
+> mongodb 安装
+
++ 下载地址  https://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.0.tgz
++ 命令
+
+```
+db.users.update({name:'aaa'},{$set:{count:'china'}})
+查询
+db.users.find() 显示所有
+db.users.find({name:'aaa'})
+db.users.find({score:{$gt:80}})
+分页
+db.users.find().skip(0)  跳到第几条
+db.users.find().skip(2).limit(3)  显示第3条
+排序
+db.users.find().sort({'score':1}) -1降序
+正则
+db.users.find({name:/红$/})
+聚合
+db.users.update({name:/够/},{contry:'哈哈'})
+
+db.inventory.find() 仓库
+db.inventory.insert()
+db.orders.aggregate([
+    {
+        $lookup:
+        {
+            from:'aaa',
+            as:'bbbb'
+        }
+    }
+])
+
+https://www.sinya.online:3400
+https://www.sinya.online:3400/list
+```
+
+> 经纬度
+
+https://www.sinya.online:3400
+
+https://www.sinya.online:3400/list
+
+
+
+> mongoose 面向对象的方式
+
+
+
+> 公私钥 https
+
+![image-20180719222907567](assets/image-20180719222907567.png)
+
+![image-20180719223613354](assets/image-20180719223613354.png)
+
++ 服务器 到 客户端 》私钥加密  公钥解密
+
++ 客户端  到 服务器 》 公钥加密 私钥解密
+
+  + 保证 客户单 到  服务器 消息不被篡改 通过签名   加密 的加密   服务器 解密  和 解密 校验
+
+  + 防止黑客伪造  请求携带证书   ca 颁发证书
+
+    ![image-20180719224330227](assets/image-20180719224330227.png)
+
++ cert
+
+> 附近的人
+
++ 数据库帮我们计算距离
+
+  + 调用api
+
+  + 存储节点
+
+    + 使用索引  指定字段  描述
+
+    + 相当于 数据的目录
+
+      ```
+      创建索引
+      ```
+
+      
+
+
+
+
+
+
+
 # nodejs 2018-07-17 express
 
 > express
