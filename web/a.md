@@ -1080,15 +1080,15 @@ CPU切换到内核态, 并跳到位于内存指定位置的指令, 这些指令�
 
 # 2018-06-25 php xml json
 
-![image-20180625212223720](./image-20180625212223720.png)
+![image-20180625212223720](./assets/image-20180625212223720.png)
 
-![image-20180625215443169](./image-20180625215443169.png)
+![image-20180625215443169](./assets/image-20180625215443169.png)
 
-![image-20180625224115711](./image-20180625224115711.png)
+![image-20180625224115711](./assets/image-20180625224115711.png)
 
 
 
-![image-20180625224456783](./image-20180625224456783.png)
+![image-20180625224456783](./assets/image-20180625224456783.png)
 
 
 
@@ -1115,15 +1115,15 @@ echo $_SESSION['username']
 
 ```
 
-![image-20180623211349259](./image-20180623211349259.png)
+![image-20180623211349259](./assets/image-20180623211349259.png)
 
 
 
-![image-20180623212813750](./image-20180623212813750.png)
+![image-20180623212813750](./assets/image-20180623212813750.png)
 
 
 
-![image-20180623213705689](./image-20180623213705689.png)
+![image-20180623213705689](./assets/image-20180623213705689.png)
 
 ### 请求转发
 
@@ -1143,33 +1143,33 @@ echo $_SESSION['username']
 
 ### session 案例
 
-![image-20180623220637017](./image-20180623220637017.png)
+![image-20180623220637017](./assets/image-20180623220637017.png)
 
 
 
-![image-20180623221600552](./image-20180623221600552.png)
+![image-20180623221600552](./assets/image-20180623221600552.png)
 
-![image-20180623221714230](./image-20180623221714230.png)
+![image-20180623221714230](./assets/image-20180623221714230.png)
 
 登录验证
 
-![image-20180623223111844](./image-20180623223111844.png)
+![image-20180623223111844](./assets/image-20180623223111844.png)
 
-![image-20180623223316783](./image-20180623223316783.png)
+![image-20180623223316783](./assets/image-20180623223316783.png)
 
 
 
 ### ajax
 
-![image-20180623225114054](./image-20180623225114054.png)
+![image-20180623225114054](./assets/image-20180623225114054.png)
 
-![image-20180623225008176](./image-20180623225008176.png)
+![image-20180623225008176](./assets/image-20180623225008176.png)
 
-![image-20180623225702750](./image-20180623225702750.png)
+![image-20180623225702750](./assets/image-20180623225702750.png)
 
-![image-20180623230229293](./image-20180623230229293.png)
+![image-20180623230229293](./assets/image-20180623230229293.png)
 
-![image-20180623230754869](./image-20180623230754869.png)
+![image-20180623230754869](./assets/image-20180623230754869.png)
 
 
 
@@ -1177,7 +1177,7 @@ echo $_SESSION['username']
 
 content-type application /x-www
 
-![image-20180623231310719](./image-20180623231310719.png)
+![image-20180623231310719](./assets/image-20180623231310719.png)
 
 
 
@@ -1850,4 +1850,54 @@ sudo mysqladmin  -u root -p password
 | 00292        | 市政学                                                       | 6                                        | --                     |                       |                        |      |
 | 00341        | 公文写作与处理                                               | 6                                        | 2018-10-20 14:30~17:00 |                       |                        |      |
 | 说明         | 说明:1.“03707毛泽东思想、邓小平理论和“三个代表”重要思想概论”可顶替“12656毛泽东思想和中国特色社会主义理论体系概论”课程。 2.00018/00019计算机应用基础课程须参加全国计算机等级一级或以上考试并取得等级证书。 3.选修课程，可在推荐选修课程中选考，也可在我省现行开考所有专科专业中选考与本专业核心课程不同的课程，课程门数不少于4门，学分不低于22学分。不得跨专业选修实践课。 |                                          |                        |                       |                        |      |
+
+
+
+# opencv
+
+#### python opencv
+
+```
+
+sudo pip install opencv-python
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+import numpy as np
+import cv2
+# Load an color image in grayscale
+img = cv2.imread('messi5.jpg',0)
+
+
+img = cv2.imread('messi5.jpg',cv2.IMREAD_GRAYSCALE)
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+Collecting opencv-python
+  Downloading https://files.pythonhosted.org/packages/ae/f7/01fc83414fbdbb470d6d77ee4a0fd32234046edc4a2e4f7897e3e95ee666/opencv_python-3.4.2.17-cp27-cp27m-macosx_10_6_x86_64.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl (42.2MB)
+    100% |████████████████████████████████| 42.3MB 144kB/s 
+Collecting numpy>=1.11.1 (from opencv-python)
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='pypi.org', port=443): Read timed out. (read timeout=15)",)': /simple/numpy/
+  Downloading https://files.pythonhosted.org/packages/3c/bf/e36756c562f7386be78c6942f0a8a647ee4eb374cdf219bece7054832b14/numpy-1.15.0-cp27-cp27m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl (24.5MB)
+
+
+
+
+```
+
+#### opencv a安装
+
+```
+opencv-python
+Cannot uninstall 'numpy'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+
+
+sudo pip install --ignore-installed  numpy
+
+ sudo pip install opencv-python
+```
 
