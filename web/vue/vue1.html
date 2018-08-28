@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+        {% include 'header_title.html' %}
+<!--<body class="hold-transition skin-blue sidebar-mini">-->
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+        {% include 'header.html' %}
+<!-- Left side column. contains the logo and sidebar -->
+        {% include 'left_new.html' %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+<h1> <span id = 'title'></span>
+<small> <span id = 'title_mes'></span></small>
+</h1>
+
+<ol class="breadcrumb">
+<li><a href="/proprietary/index/"><i class="fa fa-dashboard"></i> 首页</a></li>
+<li class="active" id = 'mianbaoxie'></li>
+</ol>
+</section>
+
+<section id = 'main' class="content">
+
+
+{% ifequal auth_str 'True' %}
+
+<!-- Main row -->
+<!-- 动态区域 -->
+<div id="are" class="row">
+
+
+
+
+
+</div>
+<!-- 动态区域 -->
+<!-- Main row -->
+
+
+
+{% else %}
+
+<div class="callout callout-danger">
+<h4>您暂无权限查看该页面，请申请权限或者角色</h4>
+<!--<div class="col-xs-12" style="margin-left:-15px;">-->
+
+<p style="margin-top:20px;">【工单】L2 编辑工单周报,请点击申请按钮申请此权限</p>
+<a href="https://acl.alibaba-inc.com/apply/cart/detail.htm?spm=0.0.0.0.erjtMz&pnames={{name}}"><button type="submit" class="btn btn-primary">申请</button></a>
+</div>
+
+
+{% endifequal %}
+
+
+
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+        {% include 'footer.html' %}
+
+
+
+
+
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+{% include 'footer_js.html' %}
+
+
+
+
+<h1>Vue</h1>
+
+<div id="app">
+{{msg2}}
+{{ {msg2:'tome'} }}
+{{msg3}}
+{{2>1?'真':'假'}}
+
+</div>
+
+<style>
+    .red{
+        color: red;
+    }
+    .green{
+        color: green;
+    }
+</style>
+
+<script type="text/javascript" src='vue.2.5.17.js'></script>
+<!-- <script type="text/javascript" src='vue.min.2.5.17.js'></script> -->
+<script>
+
+
+
+var headerStr = {
+    template:`
+        <div>我是头部组件</div>
+    `
+}
+
+var leftStr = {
+    template:`
+        <div>我是侧边栏</div>
+    `
+}
+
+//声明局部组件
+//1、声明  2、挂载 components 3、引用  
+var App = {
+    template:`
+    <div>
+                   <div> 
+                        <h1>第一 双向数据绑定</h1>
+                        <p v-bind:class="msg5"> red </p>
+                        <p class = "red" v-bind:class="{green:isTrue}" > green </p>
+                        <button v-on:click = 'isTrue = true'>改变为绿色 </button>
+                        <button v-on:click = 'isTrue = !isTrue'>改变颜色 取反</button>
+                        <button v-on:click = 'changeColor'>改变颜色 调用方法</button>
+                        <input type="text" v-model='msg6'/>
+                        <p>{{msg6}}双向数据绑定</p>
+                        <input type="text" v-bind:value='msg7' v-on:input='change'/>
+                        <p>{{msg7}}双向数据绑定 原理实现</p>
+                    </div>
+                    <div>我是入口</div>
+                    <headerStr></headerStr>
+                    <leftStr />  <!-- es6语法  单闭合 双闭合-->
+                    <Vbtn />
+            </div>
+    `,
+    data:function(){ //数据
+        return {
+            msg1:'msg1',
+            msg2:'msg2',
+            msg3: 1==1,
+            msg4: 'msg4',
+            isShow:true,
+            // 模板语法 {{}}
+            // 插值语法 react{}
+            // angular{{}}
+            msgList:[
+            {id:1,name:'msg1',price:10},
+            {id:2,name:'msg2',price:20},
+            {id:3,name:'msg3',price:30},
+            ],
+            msg5:'red',
+            isTrue:false,
+            msg6:'hello双向数据绑定',  //双向数据绑定  m 影响v  v影响 m
+            msg7:'双向数据绑定原理',  //v-bind v-on
+          }
+        }, //data 默认返回对象{} 组件的时候 需要用到构造函数 返回必须是对象
+        // 数据驱动试图 设计架构模式 mvvm
+        // model 指数据data
+        // view 指内容 template
+        // viewModel 模板插值语法 内容 和 数据绑定
+
+
+        //函数处理
+        methods:{  
+
+            // this 包含 methods 方法
+            //     包含 变量值
+            changeColor(e){
+                console.log(this)  //指向vue 本身实例
+                console.log(e.target)  //返回  template html 对象
+                if(this.isTrue){
+                    this.isTrue = false
+                }else{
+                    this.isTrue = true    //数据变化 影响试图 单向数据绑定
+                    //试图变化 影响数据 双向数据绑定
+
+                }
+            },
+            change(e){
+                    this.msg7 = e.target.value;  //双向数据绑定原理
+            }
+        },
+   components:{
+        headerStr,
+        leftStr,
+    }
+}
+
+
+// 全局组件声明
+Vue.component('Vbtn',{
+    template:`
+        <button>全局组件按钮</button> 
+    `
+})
+
+
+
+// 创建vue对象 构造函数 参数对象
+new Vue({
+        el:"#app", //id 绑定目的地
+
+            // template 没有变量 则找 目的地变量
+            // template:'<div>{{msg1}}</div>', //内容 数据属性
+
+            // template:`<div v-html="msg4"></div>
+            //         <div v-if='true'>哈哈</div>
+
+            //         <div v-show='isShow'>isShow哈哈</div>
+            //             <ul>
+            //                 <li v-for = '(item,index) in msgList'>
+            //                     <h3> {{index}} {{item}}</h3>
+            //                 </li>
+            //             </ul>
+            //         </div>`
+                   
+
+
+// 模板优先  v  template 是入口
+            template:'<App></App>',
+            // <p class="red"> 红色</p>
+            // <div><p class="red">红色</p></div>
+// 返回对象
+        data:function(){ //数据
+        return {
+            msg1:'msg1',
+            msg2:'msg2',
+            msg3: 1==1,
+            msg4: 'msg4',
+            isShow:true,
+            // 模板语法 {{}}
+            // 插值语法 react{}
+            // angular{{}}
+            msgList:[
+            {id:1,name:'msg1',price:10},
+            {id:2,name:'msg2',price:20},
+            {id:3,name:'msg3',price:30},
+            ],
+            msg5:'red',
+            isTrue:false,
+            msg6:'hello双向数据绑定',  //双向数据绑定  m 影响v  v影响 m
+            msg7:'双向数据绑定原理',  //v-bind v-on
+          }
+        }, //data 默认返回对象{} 组件的时候 需要用到构造函数 返回必须是对象
+        // 数据驱动试图 设计架构模式 mvvm
+        // model 指数据data
+        // view 指内容 template
+        // viewModel 模板插值语法 内容 和 数据绑定
+
+
+        //函数处理
+        methods:{  
+
+            // this 包含 methods 方法
+            //     包含 变量值
+            changeColor(e){
+                console.log(this)  //指向vue 本身实例
+                console.log(e.target)  //返回  template html 对象
+                if(this.isTrue){
+                    this.isTrue = false
+                }else{
+                    this.isTrue = true    //数据变化 影响试图 单向数据绑定
+                    //试图变化 影响数据 双向数据绑定
+
+                }
+            },
+            change(e){
+                    this.msg7 = e.target.value;  //双向数据绑定原理
+            }
+        },
+
+        //组件入口   1挂在组件
+        components:{
+            App
+        }
+
+//----------------第一课-------------
+// 指令 v-xxx 指令封装了操作DOM行为， 数据驱动试图
+//v-text innerText
+// v-html innerHtml
+// v-if 真正的条件渲染 DOM 切换过程被销毁重建 懒惰的 如果初始条件为假 什么都不做， 直到渲染条件为真 才开始渲染 条件块 当前div
+// v-show 不管初始条件是什么，元素总是会被渲染 并且 只是简单的基于css 样式进行操作 显示或隐藏
+// or if有更高的切换开销 show有跟高的初始渲染开销 频繁的切换用show
+
+
+// vue 主要关注试图层面
+// v-bind  绑定元素  修改类 v-bind = "{类名：true }"  数据驱动试图 数据改变 试图同步改变  data——> view  单向数据流
+
+
+//路由懒加载
+//生命周期
+// #-----------组件
+
+
+
+
+});
+
+</script>
+
+
+</body>
+</html>
