@@ -71,3 +71,13 @@ https://www.youtube.com/watch?v=x42mP5z-fgE
 ![1541570922964](assets/1541570922964.png)
 
 https://www.youtube.com/watch?v=4x1Pweimg8s
+
+
+
+![1542002250182](assets/1542002250182.png)
+
+https://www.youtube.com/watch?v=aLfE0lCAB7U
+
+![1542002418627](assets/1542002418627.png)
+
+![1542002563361](assets/1542002563361.png)
