@@ -32,86 +32,6 @@
 
 
 
-> 
->
-> 面向对象
->
-> 
-
-代码
-
-class   abstract  extends超类  interface implements
-
-public 公有   protected保护定义   private 私有
-
-import 导包
-
-类修饰符  public abstract  final  private
-
-class 关键字
-
-extends 继承关键字  implements 接口关键字
-
-警惕 public  类名 变量
-
-```
-接口
-interface aaa{}
-
-class bbb implements aaa{
-	public void ccc(double x1, doubley1){
-        
-	}
-}
-类定义
-class aaa{
-    
-}
-class fff （）{
-    
-}
-
-abstract class ccc{   抽象类
-        abstract public void ddd()
-}
-
-class  eee extends ccc{
-    e继承了c
-}
-
-
-```
-
-java
-
-![1541467609586](assets/1541467609586.png)
-
-![1541467648270](assets/1541467648270.png)
-
-
-
-![1541468138084](assets/1541468138084.png)
-
-
-
-
-
-适配器：
-
-生成器模式：
-
-生成器：
-
-桥接模式：
-
-策略模式：
-
-![1541473572076](assets/1541473572076.png)
-
-abstract void doPaint(Matrix m)
-
-
-
 > 第2章 基础
 
 加密算法 公开 ecc dsa rsa
@@ -323,6 +243,32 @@ E-> T|E+T     2--3*4 ？？  2018  50题目
 e-r模型、关系代数、元组演算、规范化理论(键、范式、模式分解)、sql语言
 
 ![1541664897148](assets/1541664897148.png)
+
+
+
+
+
+![1541665188091](assets/1541665188091.png)
+
+![1541666263288](assets/1541666263288.png)
+
+1对1   至少2个实体
+
+1对多  2个实体
+
+多对多 3个实体   联系也要是实体    
+
+联系   转关系模式  m:n:p  至少   3 + 1  4个关系
+
+关系代数 表达式  差  谁减谁   取 减数 剩下的
+
+​	笛卡尔积
+
+
+
+
+
+
 
 
 
@@ -1025,6 +971,114 @@ Uml组成：**构造块**、**公共机制**、**规则**
 
 
 面向对象设计模式？结构 、？？面向对象109 
+
+
+
+> 面向对象
+>
+> 
+>
+> 
+
+设计模式：创建、结构、行为 形式
+
+结构性：适配器、桥接、组合、装饰、外观、享元、代理
+
+创建型：工厂方法、抽象工厂、构建器、原型、单独
+
+行为型：解释器、模板、职责连、命令、迭代器、中介者、备忘录、观察者、状态、策略、方位者
+
+
+
+
+
+
+
+
+
+
+
+
+
+> 
+>
+> 程序设计
+>
+> 
+
+代码
+
+class   abstract  extends超类  interface implements
+
+public 公有   protected保护定义   private 私有
+
+import 导包
+
+类修饰符  public abstract  final  private
+
+class 关键字
+
+extends 继承关键字  implements 接口关键字
+
+警惕 public  类名 变量
+
+```
+接口
+interface aaa{}
+
+class bbb implements aaa{
+	public void ccc(double x1, doubley1){
+        
+	}
+}
+类定义
+class aaa{
+    
+}
+class fff （）{
+    
+}
+
+abstract class ccc{   抽象类
+        abstract public void ddd()
+}
+
+class  eee extends ccc{
+    e继承了c
+}
+
+
+```
+
+java
+
+![1541467609586](assets/1541467609586.png)
+
+![1541467648270](C:/WINDOWS/system32)
+
+
+
+![1541468138084](assets/1541468138084.png)
+
+
+
+
+
+适配器：
+
+生成器模式：
+
+生成器：
+
+桥接模式：
+
+策略模式：
+
+![1541473572076](assets/1541473572076.png)
+
+abstract void doPaint(Matrix m)
+
+
 
 
 
